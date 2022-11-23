@@ -1,48 +1,35 @@
 ﻿#include <iostream>
 #include <fstream>
-#include <vector>
 
 int main()
 {
-    //char buffer[30];
+    char buffer[30];
     char temp;
-    std::string name = "", surname = "", sum ="", date = "";
-    int maxSum = 0;
+    std::string name = "", surname = "", date = "";
+    std::string nameMax = "", surnameMax = "", dateMax = "";
+    int sum, totalSum = 0, sumMax = 0;
     std::ifstream statement;
-    statement.open("C:\\Users\\Василий\\source\\repos\\FileReadingTask3\\Statement.txt", std::ios::binary);
+    statement.open("C:\\Users\\Василий\\source\\repos\\FileReadingTask3\\Statement.txt", std::ios::in);
     if (statement.is_open())
     {
         std::cout << "Working!" << std::endl;
-        
-        
+               
         while(!statement.eof())
         {
-            int turn = 0;
-
-            statement.get(temp);
-            if (temp != ' ')
-            {
-                switch (turn)
-                {
-                    case 0: name += temp;
-                        break;
-                    case 1: surname += temp;
-                        break;
-                    case 2: sum += temp;
-                        break;
-                    case 3: date += temp;
-                        break;
-
-                }
-            }
-            else
-            {
-                turn++;
-            }
-                
-                
+            statement >> name;
+            statement >> surname;
+            statement >> sum;
+            statement >> date;
             
-            
+            if (sum > sumMax)
+            {
+                sumMax = sum;
+                nameMax = name;
+                surnameMax = surname;
+                dateMax = date;
+            }
+            totalSum += sum;
+                           
         }
         
         statement.close();
@@ -52,4 +39,7 @@ int main()
     {
         std::cout << "File not found!" << std::endl;
     }
+    std::cout << nameMax << " " << surnameMax << " received the maximum payout!" << std::endl;
+    std::cout << "It amounted to " << sumMax << std::endl;
+    std::cout << "Total payout is: " << totalSum << std::endl;
 }

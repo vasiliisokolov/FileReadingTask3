@@ -7,7 +7,7 @@ int main()
     std::string nameMax = "", surnameMax = "", dateMax = "";
     int sum, totalSum = 0, sumMax = 0;
     std::ifstream statement;
-    statement.open("C:\\Users\\Василий\\source\\repos\\FileReadingTask3\\Statement.txt", std::ios::in);
+    statement.open("Statement.txt", std::ios::in);
     if (statement.is_open())
     {
         std::cout << "Working!" << std::endl;
